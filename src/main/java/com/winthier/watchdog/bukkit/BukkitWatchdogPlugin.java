@@ -26,7 +26,9 @@ public class BukkitWatchdogPlugin extends JavaPlugin {
         } else if (args.length == 1 && args[0].equalsIgnoreCase("tick")) {
             watchdog.somethingHappened();
             sender.sendMessage("Watchdog thread ticked");
+        } else {
+            return false;
         }
-        return false;
+        return true;
     }
 }
