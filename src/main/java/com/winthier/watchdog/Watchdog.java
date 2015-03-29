@@ -69,30 +69,25 @@ public abstract class Watchdog {
             warn("Nothing happened for a minute. Starting to worry.");
             break;
         case LIMIT:
-            warn("Trying to shutdown soon");
-            logCommand("shutdown now");
-            logCommand("as set now");
-            break;
-        case LIMIT + 60:
             logCommand("stop");
             break;
-        case LIMIT + 120:
+        case LIMIT + 60:
             warn("System.exit(1)");
             System.exit(1);
             break;
-        case LIMIT + 125:
+        case LIMIT + 65:
             logExec("kill " + pid);
             break;
-        case LIMIT + 130:
+        case LIMIT + 70:
             logExec("kill -KILL " + pid);
             break;
-        case LIMIT + 135:
+        case LIMIT + 75:
             logExec("killall java");
             break;
-        case LIMIT + 140:
+        case LIMIT + 80:
             logExec("killall -KILL java");
             break;
-        case LIMIT + 150:
+        case LIMIT + 90:
             warn("I give up.");
             return false;
         }
