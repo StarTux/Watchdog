@@ -2,6 +2,7 @@ name: Watchdog
 description: Stop the server when it hangs
 author: StarTux
 version: 0.1
+website: https://cavetale.com
 main: com.winthier.watchdog.bukkit.BukkitWatchdogPlugin
 depend: []
 commands:

@@ -4,7 +4,7 @@
   <groupId>com.winthier.watchdog</groupId>
   <artifactId>watchdog</artifactId>
   <packaging>jar</packaging>
-  <version>0.1</version>
+  <version>0.1-SNAPSHOT</version>
   <name>Watchdog</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -14,22 +14,15 @@
     <!-- Spigot Repo -->
     <repository>
       <id>spigot-repo</id>
-      <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
   </repositories>
   <dependencies>
-    <!-- JUnit -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
     <!-- Spigot-API -->
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.8-R0.1-SNAPSHOT</version>
+      <version>1.13-pre7-R0.1-SNAPSHOT</version>
     </dependency>
     <!-- Lombok -->
     <dependency>
@@ -41,14 +34,14 @@
   </dependencies>
   <build>
     <plugins>
-      <!-- Java 7 -->
+      <!-- Java 8 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.2</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
           <compilerArgs>
