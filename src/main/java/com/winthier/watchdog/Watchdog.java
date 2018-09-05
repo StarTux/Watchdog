@@ -1,7 +1,6 @@
 package com.winthier.watchdog;
 
 import java.io.File;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -96,13 +95,6 @@ public final class Watchdog extends JavaPlugin implements Runnable {
         System.err.println("[winthier.Watchdog] " + message);
     }
 
-    void logCommand(String command) {
-        info("Running command: " + command);
-        Bukkit.getScheduler().runTask(this, () -> {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-            });
-    }
-
     void logExec(String command) throws Exception {
         info("Running process: " + command);
         Runtime.getRuntime().exec(command);
@@ -119,9 +111,6 @@ public final class Watchdog extends JavaPlugin implements Runnable {
         switch (seconds) {
         case 60:
             warn("Nothing happened for a minute. Starting to worry.");
-            break;
-        case LIMIT:
-            logCommand("stop");
             break;
         case LIMIT + 60:
             warn("System.exit(1)");
