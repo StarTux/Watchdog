@@ -31,7 +31,7 @@ public final class Watchdog extends JavaPlugin implements Runnable {
     private int pid;
     private volatile int idleSeconds;
     private volatile boolean disableWatchdog;
-    static final int LIMIT = 120;
+    static final int LIMIT = 180;
 
     @Override
     public void onEnable() {
@@ -108,31 +108,26 @@ public final class Watchdog extends JavaPlugin implements Runnable {
             ie.printStackTrace();
         }
         idleSeconds += 1;
+        if (seconds > 0 && seconds % 60 == 0) {
+            int minutes = seconds / 60;
+            if (minutes > 1) {
+                warn("Nothing happened for " + minutes + " minutes");
+            } else if (minutes == 1) {
+                warn("Nothing happened for a minute.");
+            }
+        }
         switch (seconds) {
-        case 60:
-            warn("Nothing happened for a minute. Starting to worry.");
-            break;
-        case LIMIT + 60:
-            warn("System.exit(1)");
-            System.exit(1);
-            break;
-        case LIMIT + 65:
+        case LIMIT:
             if (pid > 0) {
                 logExec("kill " + pid);
             }
             break;
-        case LIMIT + 70:
+        case LIMIT + 60:
             if (pid > 0) {
                 logExec("kill -KILL " + pid);
             }
             break;
-        case LIMIT + 75:
-            logExec("killall java");
-            break;
-        case LIMIT + 80:
-            logExec("killall -KILL java");
-            break;
-        case LIMIT + 90:
+        case LIMIT + 120:
             warn("I give up.");
         default:
             break;
