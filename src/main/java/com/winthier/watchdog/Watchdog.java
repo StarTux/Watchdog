@@ -122,6 +122,10 @@ public final class Watchdog extends JavaPlugin implements Runnable {
                 logExec("kill " + pid);
             }
             break;
+        case LIMIT + 30:
+            warn("Calling Runtime.halt()...");
+            Runtime.getRuntime().halt(1);
+            break;
         case LIMIT + 60:
             if (pid > 0) {
                 logExec("kill -KILL " + pid);
